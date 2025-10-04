@@ -9,16 +9,16 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-slate-900 dark:bg-slate-950 text-white py-12">
+    <footer className="bg-slate-900 dark:bg-slate-950 text-white py-20">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div>
             <h3 className="text-2xl font-bold mb-4">{personalInfo.name}</h3>
             <p className="text-slate-400 mb-4">
               {personalInfo.title}
             </p>
             <p className="text-slate-400 text-sm">
-              Building the future, one line of code at a time.
+              Driving digital transformation and product innovation across global markets.
             </p>
           </div>
 

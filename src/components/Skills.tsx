@@ -25,14 +25,14 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" className="py-20 bg-slate-50 dark:bg-slate-800">
+    <section id="skills" className="py-32 bg-gradient-to-br from-slate-50 to-emerald-50 dark:from-slate-800 dark:to-slate-900">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+        <div className="text-center mb-20">
+          <h2 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
             Skills & Expertise
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Technologies and tools I work with to bring ideas to life.
+          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
+            Comprehensive expertise across product management, methodologies, and leadership.
           </p>
         </div>
 
@@ -55,14 +55,14 @@ export default function Skills() {
         <div className="space-y-12">
           {Object.entries(groupedSkills).map(([category, categorySkills]) => (
             <div key={category} className="animate-fade-in-up">
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+              <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
                 {category}
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {categorySkills.map((skill, index) => (
                   <div
                     key={skill.name}
-                    className="group bg-white dark:bg-slate-700 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                    className="group bg-white dark:bg-slate-700 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-slate-200 dark:border-slate-600"
                     style={{ animationDelay: `${index * 50}ms` }}
                   >
                     <div className="flex items-center gap-4 mb-4">

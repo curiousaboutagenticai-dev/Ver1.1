@@ -13,14 +13,14 @@ export default function Projects() {
     : projects.filter(p => p.tags.includes(filter));
 
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-slate-900">
+    <section id="projects" className="py-32 bg-white dark:bg-slate-900">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+        <div className="text-center mb-20">
+          <h2 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
             Featured Projects
           </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            A selection of projects showcasing my skills in web development, design, and problem-solving.
+          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
+            A selection of projects showcasing expertise in product management and digital transformation.
           </p>
         </div>
 
@@ -41,11 +41,11 @@ export default function Projects() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
-              className="group relative bg-slate-50 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in-up"
+              className="group relative bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-800 dark:to-slate-700 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 animate-fade-in-up border border-slate-200 dark:border-slate-600"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="relative h-56 overflow-hidden">

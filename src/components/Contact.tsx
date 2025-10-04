@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Send, CheckCircle, MapPin, Phone } from 'lucide-react';
+import { Mail, Send, CheckCircle, MapPin, Phone, Upload, X } from 'lucide-react';
 import { personalInfo } from '../data/portfolio';
 
 export default function Contact() {
@@ -8,8 +8,30 @@ export default function Contact() {
     email: '',
     message: '',
   });
+  const [file, setFile] = useState<File | null>(null);
+  const [fileError, setFileError] = useState('');
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const MAX_FILE_SIZE = 5 * 1024 * 1024;
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      if (selectedFile.size > MAX_FILE_SIZE) {
+        setFileError('File size must be less than 5MB');
+        setFile(null);
+      } else {
+        setFileError('');
+        setFile(selectedFile);
+      }
+    }
+  };
+
+  const removeFile = () => {
+    setFile(null);
+    setFileError('');
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,6 +41,7 @@ export default function Contact() {
       setStatus('success');
       setIsSubmitting(false);
       setFormData({ name: '', email: '', message: '' });
+      setFile(null);
 
       setTimeout(() => {
         setStatus('idle');
@@ -175,6 +198,45 @@ export default function Contact() {
                     className="w-full px-4 py-3 bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-all resize-none"
                     placeholder="Tell me about your project..."
                   />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-900 dark:text-white mb-2">
+                    Attachment (Optional)
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="file"
+                      id="file"
+                      onChange={handleFileChange}
+                      className="hidden"
+                      accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png"
+                    />
+                    <label
+                      htmlFor="file"
+                      className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-slate-100 dark:bg-slate-700 border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-lg text-slate-600 dark:text-slate-400 hover:border-blue-500 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-all"
+                    >
+                      <Upload className="w-5 h-5" />
+                      {file ? file.name : 'Click to upload file (Max 5MB)'}
+                    </label>
+                    {file && (
+                      <button
+                        type="button"
+                        onClick={removeFile}
+                        className="absolute top-3 right-3 p-1 bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-400 rounded-full hover:bg-red-200 dark:hover:bg-red-800 transition-colors"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    )}
+                  </div>
+                  {fileError && (
+                    <p className="mt-2 text-sm text-red-600 dark:text-red-400">{fileError}</p>
+                  )}
+                  {file && !fileError && (
+                    <p className="mt-2 text-sm text-emerald-600 dark:text-emerald-400">
+                      File size: {(file.size / 1024 / 1024).toFixed(2)} MB
+                    </p>
+                  )}
                 </div>
 
                 <button
